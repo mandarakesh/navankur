@@ -10,13 +10,12 @@ app.use(express.json());
 // Auth routes
 app.use("/api/auth", authRoutes);
 
-//handling 500 error
-app.use((err, req, res, next) => {
-  res.status(500).json({ message: "Something went wrong!" });
+app.use((req, res, next) => {
+  res.status(404).send("Route not Found, Check the Route!");
 });
-
-app.use((err, req, res, next) => {
-  res.status(404).json({ message: "Route not Found!" });
+//handling 500 error
+app.use((req, res, next) => {
+  res.status(500).send("Something went wrong!");
 });
 
 const PORT = process.env.PORT || 5000;
