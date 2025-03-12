@@ -1,7 +1,7 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const connectDB = require('./config/db');
+const express = require("express");
+const dotenv = require("dotenv");
+const authRoutes = require("./routes/authRoutes");
+const connectDB = require("./config/db");
 
 dotenv.config();
 
@@ -12,12 +12,15 @@ app.use(express.json());
 connectDB();
 
 // Auth routes
-app.use('/api/auth', authRoutes);
+app.use("/api/auth", authRoutes);
 
-// Error handling middleware (optional)
+//handling 500 error
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong!' });
+  res.status(500).json({ message: "Something went wrong!" });
+});
+
+app.use((err, req, res, next) => {
+  res.status(404).json({ message: "Route not Found!" });
 });
 
 const PORT = process.env.PORT || 5000;
