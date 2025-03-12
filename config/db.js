@@ -11,7 +11,6 @@ const connectDB = async () => {
     return client.db();  // Return the database 
   } catch (err) {
     console.error(err);
-    process.exit(1);
   }
 };
 

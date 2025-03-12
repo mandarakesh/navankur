@@ -16,6 +16,7 @@ const ValidateSigninSchema = Joi.object({
   password: Joi.string().required("password is required"),
 });
 
+//register user
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
   const validated = ValidateRegisterSchema.validate(req.body);
@@ -45,6 +46,7 @@ const registerUser = async (req, res) => {
   }
 };
 
+//login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const validated = ValidateSigninSchema.validate(req.body);
@@ -74,7 +76,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-//user logout
+//logout user
 const logoutUser = (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
